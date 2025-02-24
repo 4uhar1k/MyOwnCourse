@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MyOwnCourse.Data;
-using MyOwnCourse.Domains.Enitites;
+using MyOwnCourseAPI.Data;
+using MyOwnCourseAPI.Domains.Enitites;
 
-namespace MyOwnCourse.Controllers
+namespace MyOwnCourseAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

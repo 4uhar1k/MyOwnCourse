@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MyOwnCourse.Domains.Enitites;
+using MyOwnCourseAPI.Domains.Enitites;
 
-namespace MyOwnCourse.Data
+namespace MyOwnCourseAPI.Data
 {
     public class CourseDBContext: DbContext
     {

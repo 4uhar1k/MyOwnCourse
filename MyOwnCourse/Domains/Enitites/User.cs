@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MyOwnCourse.Domains.Enitites
+namespace MyOwnCourseAPI.Domains.Enitites
 {
     [Table("users")]
     public record User

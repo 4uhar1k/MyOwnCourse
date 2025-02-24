@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using MyOwnCourse.Data;
+using MyOwnCourseAPI.Data;
 using System;
 
 var builder = WebApplication.CreateBuilder(args);
