@@ -5,13 +5,12 @@
 
     <ScrollView>
         <StackLayout>
-            <CollectionView>
+            <CollectionView x:Name="UsersCollection">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout>
-                            <Label>
+                            <Label Text="{Binding Login}"/>
 
-                            </Label>
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

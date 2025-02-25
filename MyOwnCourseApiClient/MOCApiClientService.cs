@@ -20,24 +20,24 @@ namespace MyOwnCourseApiClient
 
         public async Task<List<User>?> GetUsers()
         {
-            return await _httpClient.GetFromJsonAsync<List<User>?>("api/User");
+            return await _httpClient.GetFromJsonAsync<List<User>?>("/api/User");
         }
 
         public async Task<User?> GetUserById(int id)
         {
-            return await _httpClient.GetFromJsonAsync<User?>($"api/User/id/{id}");
+            return await _httpClient.GetFromJsonAsync<User?>($"/api/User/id/{id}");
         }
         public async Task PostUser(User user)
         {
-            await _httpClient.PostAsJsonAsync("api/User", user);
+            await _httpClient.PostAsJsonAsync("/api/User", user);
         }
         public async Task PutUser(User user)
         {
-            await _httpClient.PutAsJsonAsync("api/User", user);
+            await _httpClient.PutAsJsonAsync("/api/User", user);
         }
         public async Task DeleteUser(int id)
         {
-            await _httpClient.DeleteAsync($"api/User/{id}");
+            await _httpClient.DeleteAsync($"/api/User/{id}");
         }
     }
 }

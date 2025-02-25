@@ -15,7 +15,7 @@ namespace MyOwnCourseApp
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
-            builder.Services.AddMOCApiClientService(x => x.ApiBaseAdress = "http://10.0.2.2/5015/");
+            builder.Services.AddMOCApiClientService(x => x.ApiBaseAdress = "http://10.0.2.2:5000");
             builder.Services.AddTransient<MainPage>();
 
 #if DEBUG
