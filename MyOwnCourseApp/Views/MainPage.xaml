@@ -17,11 +17,11 @@
             </CollectionView>
             <Button
         x:Name="CounterBtn"
-        Text="Click me" 
+        Text="Test database" 
         SemanticProperties.Hint="Counts the number of times you click"
         Clicked="OnCounterClicked"
         HorizontalOptions="Fill" />
-
+            <Button Text="Log out" BackgroundColor="Red" Clicked="LogOut" />
         </StackLayout>
         
     </ScrollView>

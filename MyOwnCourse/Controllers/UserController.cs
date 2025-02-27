@@ -23,6 +23,11 @@ namespace MyOwnCourseAPI.Controllers
         {
             return _courseDBContext.Users.Where(n => n.Id == Id).SingleOrDefault();
         }
+        [HttpGet("login/{Login}/password/{Password}")]
+        public async Task<ActionResult<User?>> GetUserByLoginNPass(string Login, string Password)
+        {
+            return _courseDBContext.Users.Where(n => n.Login == Login && n.Password == Password).SingleOrDefault();
+        }
         [HttpPost]
         public async Task<ActionResult> CreateUser(User user)
         {

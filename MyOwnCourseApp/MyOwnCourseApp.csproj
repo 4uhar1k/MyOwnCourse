@@ -69,4 +69,10 @@
 	  <ProjectReference Include="..\MyOwnCourseApiClient\MyOwnCourseApiClient.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <MauiXaml Update="Views\LoginPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
 </Project>

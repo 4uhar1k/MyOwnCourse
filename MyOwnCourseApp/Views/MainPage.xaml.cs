@@ -19,6 +19,7 @@ namespace MyOwnCourseApp
             _database = _connection.CreateConnection();
             Users = new List<User>();
             InitializeComponent();
+            CheckIfLoggedIn();
         }
 
         private async void OnCounterClicked(object sender, EventArgs e)
@@ -35,6 +36,20 @@ namespace MyOwnCourseApp
             await _database.InsertAsync(testlocaluser);
 
             UsersCollection.ItemsSource = await _database.Table<User>().ToListAsync();
+        }
+
+        public async void CheckIfLoggedIn()
+        {
+            List<User> loggeduser = await _database.Table<User>().ToListAsync();
+            if (loggeduser.Count == 0)
+                await Navigation.PushAsync(new LoginPage(_apiClient));
+        }
+        public async void LogOut(object sender, EventArgs e)
+        {
+            await _database.DeleteAllAsync<User>();
+            await Navigation.PushAsync(new LoginPage(_apiClient));
+            //await _database.DropTableAsync<User>();
+            //await _database.CreateTableAsync<User>();
         }
     }
 

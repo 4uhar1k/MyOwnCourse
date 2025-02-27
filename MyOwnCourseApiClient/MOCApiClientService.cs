@@ -25,7 +25,27 @@ namespace MyOwnCourseApiClient
 
         public async Task<User?> GetUserById(int id)
         {
-            return await _httpClient.GetFromJsonAsync<User?>($"/api/User/id/{id}");
+            try
+            {
+                return await _httpClient.GetFromJsonAsync<User?>($"/api/User/id/{id}");
+            }
+            catch
+            {
+                return null;
+            }            
+        }
+
+        public async Task<User?> GetUserByLoginNPassword(string login, string password)
+        {
+            try
+            {
+                return await _httpClient.GetFromJsonAsync<User?>($"/api/User/login/{login}/password/{password}");
+            }
+            catch
+            {
+                return null;
+            }
+            
         }
         public async Task PostUser(User user)
         {
