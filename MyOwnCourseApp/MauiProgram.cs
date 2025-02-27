@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using MyOwnCourseApiClient.IoC;
+using MyOwnCourseApp.LocalDatabase;
 
 namespace MyOwnCourseApp
 {
@@ -17,6 +18,7 @@ namespace MyOwnCourseApp
                 });
             builder.Services.AddMOCApiClientService(x => x.ApiBaseAdress = "http://10.0.2.2:5000");
             builder.Services.AddTransient<MainPage>();
+            builder.Services.AddSingleton<SqlConnectionBase>();
 
 #if DEBUG
             builder.Logging.AddDebug();

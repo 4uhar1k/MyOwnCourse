@@ -9,7 +9,7 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout>
-                            <Label Text="{Binding Login}"/>
+                            <Label Text="{Binding Name}"/>
 
                         </StackLayout>
                     </DataTemplate>
