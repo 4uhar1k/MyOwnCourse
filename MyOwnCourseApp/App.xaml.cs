@@ -1,4 +1,5 @@
-﻿using MyOwnCourseApp.LocalDatabase;
+﻿using MyOwnCourseApiClient.Models.ApiModels;
+using MyOwnCourseApp.LocalDatabase;
 using SQLite;
 
 namespace MyOwnCourseApp
@@ -16,7 +17,8 @@ namespace MyOwnCourseApp
         protected override async void OnStart()
         {
             ISQLiteAsyncConnection database = _connection.CreateConnection();
-            await database.CreateTableAsync<UserDto>();
+            await database.CreateTableAsync<User>();
+            //await database.DropTableAsync<UserDto>();
             base.OnStart();
         }
     }
