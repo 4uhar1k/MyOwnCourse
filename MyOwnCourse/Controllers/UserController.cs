@@ -21,12 +21,25 @@ namespace MyOwnCourseAPI.Controllers
         [HttpGet("id/{Id}")]
         public async Task<ActionResult<User?>> GetUserById(int Id)
         {
-            return _courseDBContext.Users.Where(n => n.Id == Id).SingleOrDefault();
+            var FoundUser = _courseDBContext.Users.Where(n => n.Id == Id).SingleOrDefault();
+            if (FoundUser == null)
+            {
+                return NotFound();
+            }
+            else
+                return FoundUser;
+            
         }
         [HttpGet("login/{Login}/password/{Password}")]
         public async Task<ActionResult<User?>> GetUserByLoginNPass(string Login, string Password)
         {
-            return _courseDBContext.Users.Where(n => n.Login == Login && n.Password == Password).SingleOrDefault();
+            var FoundUser = _courseDBContext.Users.Where(n => n.Login == Login && n.Password == Password).SingleOrDefault();
+            if (FoundUser == null)
+            {
+                return NotFound();
+            }
+            else
+                return FoundUser;
         }
         [HttpPost]
         public async Task<ActionResult> CreateUser(User user)
