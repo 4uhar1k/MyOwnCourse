@@ -11,5 +11,6 @@
         <Entry x:Name="LoginEntry" Placeholder="Login..." PlaceholderColor="Gray" TextColor="Black"/>
         <Entry x:Name="PassEntry" Placeholder="Password..." PlaceholderColor="Gray" TextColor="Black" IsPassword="True"/>
         <Button Text="Log in" Clicked="LogUser" />
+        <Button Text="Create new account" Background="Green" Clicked="CreateUser" />
     </VerticalStackLayout>
 </ContentPage>

@@ -42,12 +42,12 @@ namespace MyOwnCourseApp
         {
             List<User> loggeduser = await _database.Table<User>().ToListAsync();
             if (loggeduser.Count == 0)
-                await Navigation.PushAsync(new LoginPage(_apiClient));
+                await Navigation.PushModalAsync(new LoginPage(_apiClient));
         }
         public async void LogOut(object sender, EventArgs e)
         {
             await _database.DeleteAllAsync<User>();
-            await Navigation.PushAsync(new LoginPage(_apiClient));
+            await Navigation.PushModalAsync(new LoginPage(_apiClient), false);
             //await _database.DropTableAsync<User>();
             //await _database.CreateTableAsync<User>();
         }

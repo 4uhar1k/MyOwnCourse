@@ -25,11 +25,15 @@ public partial class LoginPage : ContentPage
 			User FoundUser = SearchedUser;
 			await _database.InsertAsync(FoundUser);
 			await DisplayAlert("", $"Welcome, {FoundUser.Name} {FoundUser.Surname}", "OK");
-            await Navigation.PopAsync();
+            await Navigation.PopModalAsync();
 		}
 		else
 		{
 			await DisplayAlert("", "No user found", "OK");
 		}
+	}
+	public async void CreateUser(object sender, EventArgs e)
+	{
+		await Navigation.PushModalAsync(new SignUpPage(_apiClient), false);
 	}
 }
