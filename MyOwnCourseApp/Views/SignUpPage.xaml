@@ -12,8 +12,9 @@
         <Entry x:Name="SurnameEntry" Text="{Binding Surname}" Placeholder="Your surname..." PlaceholderColor="Gray" TextColor="Black" />
         <Entry x:Name="LoginEntry" Text="{Binding Login}" Placeholder="Login..." PlaceholderColor="Gray" TextColor="Black"/>
         <Entry x:Name="PassEntry" Text="{Binding Password}" Placeholder="Password..." PlaceholderColor="Gray" TextColor="Black" IsPassword="True"/>
-        <Entry x:Name="RepeatPassEntry" Placeholder="Repeat your password..." PlaceholderColor="Gray" TextColor="Black"/>
-        <Button Text="Create new account" Clicked="SignUp" Command="{Binding SignUpCommand}" BackgroundColor="Green" />
+        <Entry x:Name="RepeatPassEntry" Placeholder="Repeat your password..." PlaceholderColor="Gray" TextColor="Black" TextChanged="CheckIfSame"/>
+        <Label x:Name="ErrorLabel" Text="Passwords are not the same" TextColor="Red" FontSize="15" IsVisible="False"/>
+        <Button x:Name="SignUpBtn" Text="Create new account" Clicked="SignUp" Command="{Binding SignUpCommand}" BackgroundColor="Green" />
         <Button Text="Log in" Clicked="LogIn"  />
     </VerticalStackLayout>
 </ContentPage>
