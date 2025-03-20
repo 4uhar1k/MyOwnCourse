@@ -8,9 +8,10 @@
             Text="Welcome to MyOwnCourse"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
-        <Entry x:Name="LoginEntry" Placeholder="Login..." PlaceholderColor="Gray" TextColor="Black"/>
-        <Entry x:Name="PassEntry" Placeholder="Password..." PlaceholderColor="Gray" TextColor="Black" IsPassword="True"/>
-        <Button Text="Log in" Clicked="LogUser" />
+        <Entry x:Name="LoginEntry" Text="{Binding Login}" Placeholder="Login..." PlaceholderColor="Gray" TextColor="Black"/>
+        <Entry x:Name="PassEntry" Text="{Binding Password}" Placeholder="Password..." PlaceholderColor="Gray" TextColor="Black" IsPassword="True"/>
+        <Label x:Name="CallBackLabel" Text="{Binding LoginCallback}" IsVisible="False" />
+        <Button Text="Log in" Clicked="LogUser" Command="{Binding LogInCommand}"/>
         <Button Text="Create new account" Background="Green" Clicked="CreateUser" />
     </VerticalStackLayout>
 </ContentPage>

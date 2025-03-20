@@ -8,12 +8,12 @@
             Text="Create your account"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
-        <Entry x:Name="NameEntry" Placeholder="Your name..." PlaceholderColor="Gray" TextColor="Black" IsPassword="True"/>
-        <Entry x:Name="SurnameEntry" Placeholder="Your surname..." PlaceholderColor="Gray" TextColor="Black" IsPassword="True"/>
-        <Entry x:Name="LoginEntry" Placeholder="Login..." PlaceholderColor="Gray" TextColor="Black"/>
-        <Entry x:Name="PassEntry" Placeholder="Password..." PlaceholderColor="Gray" TextColor="Black" IsPassword="True"/>
+        <Entry x:Name="NameEntry" Text="{Binding Name}" Placeholder="Your name..." PlaceholderColor="Gray" TextColor="Black" />
+        <Entry x:Name="SurnameEntry" Text="{Binding Surname}" Placeholder="Your surname..." PlaceholderColor="Gray" TextColor="Black" />
+        <Entry x:Name="LoginEntry" Text="{Binding Login}" Placeholder="Login..." PlaceholderColor="Gray" TextColor="Black"/>
+        <Entry x:Name="PassEntry" Text="{Binding Password}" Placeholder="Password..." PlaceholderColor="Gray" TextColor="Black" IsPassword="True"/>
         <Entry x:Name="RepeatPassEntry" Placeholder="Repeat your password..." PlaceholderColor="Gray" TextColor="Black"/>
-        <Button Text="Create new account" Background="Green" />
-        <Button Text="Log in" Clicked="LogIn" />
+        <Button Text="Create new account" Clicked="SignUp" Command="{Binding SignUpCommand}" BackgroundColor="Green" />
+        <Button Text="Log in" Clicked="LogIn"  />
     </VerticalStackLayout>
 </ContentPage>
