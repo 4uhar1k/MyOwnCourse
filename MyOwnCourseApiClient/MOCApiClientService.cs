@@ -59,5 +59,49 @@ namespace MyOwnCourseApiClient
         {
             await _httpClient.DeleteAsync($"/api/User/{id}");
         }
+
+        public async Task<List<Course>?> GetCourses()
+        {
+            return await _httpClient.GetFromJsonAsync<List<Course>?>("/api/Course");
+        }
+
+        public async Task<Course?> GetCourseById(int id)
+        {
+            try
+            {
+                return await _httpClient.GetFromJsonAsync<Course?>($"/api/Course/id/{id}");
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public async Task<Course?> GetCourseByCategory(string category)
+        {
+            try
+            {
+                return await _httpClient.GetFromJsonAsync<Course?>($"/api/Course/category/{category}");
+            }
+            catch
+            {
+                return null;
+            }
+
+        }
+        public async Task PostCourse(Course course)
+        {
+            await _httpClient.PostAsJsonAsync("/api/Course", course);
+        }
+        public async Task PutCourse(User course)
+        {
+            await _httpClient.PutAsJsonAsync("/api/Course", course);
+        }
+        public async Task DeleteCourse(int id)
+        {
+            await _httpClient.DeleteAsync($"/api/Course/{id}");
+        }
+
+
     }
 }

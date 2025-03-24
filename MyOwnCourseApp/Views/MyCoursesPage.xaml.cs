@@ -6,4 +6,9 @@ public partial class MyCoursesPage : ContentPage
 	{
 		InitializeComponent();
 	}
+
+	public async void CreateCourse(object sender, EventArgs e)
+	{
+		await Navigation.PushAsync(new AddCoursePage());
+	}
 }
