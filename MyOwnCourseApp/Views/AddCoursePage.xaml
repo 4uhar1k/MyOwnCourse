@@ -5,8 +5,26 @@
              Title="AddCoursePage">
     <VerticalStackLayout>
         <Label 
-            Text="Welcome to .NET MAUI!"
+            Text="Welcome to course-creating page!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+        <Entry Text="{Binding Name}" Placeholder="Name of the course..." />
+        <Picker SelectedItem="{Binding Category}" x:Name="CategoryPicker" Title="Set category of the course">
+            <Picker.Items>
+                <x:String>Languages</x:String>
+                <x:String>Math</x:String>
+                <x:String>Science</x:String>
+                <x:String>Selfdevelopment</x:String>
+                <x:String>Other</x:String>
+            </Picker.Items>
+        </Picker>
+        <Picker SelectedItem="{Binding Statusstring}" x:Name="AccessPicker" Title="Select visibility of the course">
+            <Picker.Items>
+                <x:String>Public</x:String>
+                <x:String>Private</x:String>
+                <x:String>Available for subscribers</x:String>
+            </Picker.Items>
+        </Picker>
+        <Button Text="Create course" Clicked="AddCourseClicked" Command="{Binding AddCourseCommand}" />
     </VerticalStackLayout>
 </ContentPage>

@@ -2,6 +2,7 @@
 using MyOwnCourseApiClient.IoC;
 using MyOwnCourseApp.LocalDatabase;
 using MyOwnCourseApp.ViewModels;
+using MyOwnCourseApp.Views;
 
 namespace MyOwnCourseApp
 {
@@ -20,6 +21,8 @@ namespace MyOwnCourseApp
             builder.Services.AddMOCApiClientService(x => x.ApiBaseAdress = "http://10.0.2.2:5000");
             builder.Services.AddTransient<MainPage>();
             builder.Services.AddTransient<SignUpNInViewModel>();
+            builder.Services.AddTransient<CourseViewModel>();
+            builder.Services.AddTransient<MyCoursesPage>();
             builder.Services.AddSingleton<SqlConnectionBase>();
 
 #if DEBUG
