@@ -27,7 +27,7 @@ public partial class LoginPage : ContentPage
 		var SearchedUser = await _apiClient.GetUserByLoginNPassword(LoginEntry.Text, PassEntry.Text);
 		if (SearchedUser != null)
 		{
-			User FoundUser = SearchedUser;
+			LocalUserDto FoundUser = new LocalUserDto() { Id = SearchedUser.Id, Login = SearchedUser.Login, Password = SearchedUser.Password, Name = SearchedUser.Name, Surname = SearchedUser.Surname, Role = SearchedUser.Role };
 			await _database.InsertAsync(FoundUser);
 			await DisplayAlert("", $"Welcome, {FoundUser.Name} {FoundUser.Surname}", "OK");
 			await Navigation.PopModalAsync(false);

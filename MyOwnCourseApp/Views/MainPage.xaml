@@ -1,17 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MyOwnCourseApp"
              x:Class="MyOwnCourseApp.MainPage">
-
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:IdToNameConverter x:Key="IdToNameConverter"/> 
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ScrollView>
         <StackLayout>
-            <CollectionView x:Name="UsersCollection">
+            <CollectionView x:Name="UsersCollection" ItemsSource="{Binding AllCourses}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout>
-                            <Label Text="{Binding Name}"/>
+                        <Border>
+                            <StackLayout>
+                                <Label Text="{Binding Name}" HorizontalTextAlignment="Center" FontSize="25"/>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>                                        
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Text="{Binding Creator, Converter={StaticResource IdToNameConverter}}"/>
+                                    <!--Source={RelativeSource AncestorType={x:Type Page}}, Path=BindingContext.CreatorName}"/>-->
+                                    <Label Grid.Column="1" Text="{Binding Category}" HorizontalTextAlignment="End"/>
+                                </Grid>
+                                
 
-                        </StackLayout>
+                            </StackLayout>
+                        </Border>                        
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
