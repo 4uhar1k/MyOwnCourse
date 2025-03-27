@@ -5,6 +5,7 @@ using MyOwnCourseApp.LocalDatabase;
 using SQLite;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -20,14 +21,17 @@ namespace MyOwnCourseApp.ViewModels
         private readonly SqlConnectionBase _connection;
         private readonly ISQLiteAsyncConnection _database;
         public int id, creator, status;
-        public string name, category, statusstring;
-
+        public string name, category, statusstring, creatorname;
+        public ObservableCollection<Course> AllCourses { get; set; }
+        public ObservableCollection<User> Users { get; set; }
         public ICommand AddCourseCommand { get; set; }
         public CourseViewModel(MOCApiClientService apiClient)
         {
             _apiClient = apiClient;
             _connection = new SqlConnectionBase();
             _database = _connection.CreateConnection();
+            AllCourses = new ObservableCollection<Course>();
+            LoadAllCourses();
             AddCourseCommand = new Command(async () =>
             {
                 switch(Statusstring)
@@ -51,7 +55,29 @@ namespace MyOwnCourseApp.ViewModels
                 }
             });
         }
-        
+        public async void LoadAllCourses()
+        {
+            var allcourses = await _apiClient.GetCourses();
+            if (allcourses != null)
+            {
+                
+                foreach (var course in allcourses)
+                {
+                    AllCourses.Add(course);                    
+                    User? creator = await _apiClient.GetUserById(course.Creator);
+                    if (creator != null)
+                    {
+                        CreatorName = $"{creator.Name} {creator.Surname}";
+                    }
+                }
+            }
+            var allusers = await _apiClient.GetUsers();
+            if (allusers!=null)
+            {
+                await _database.CreateTableAsync<User>();
+                await _database.InsertAllAsync(allusers);
+            }
+        }
         public int Id
         {
             get => id;
@@ -89,6 +115,15 @@ namespace MyOwnCourseApp.ViewModels
             {
                 name = value;
                 OnPropertyChanged(nameof(Name));
+            }
+        }
+        public string CreatorName
+        {
+            get => creatorname;
+            set
+            {
+                creatorname = value;
+                OnPropertyChanged(nameof(CreatorName));
             }
         }
         public string Category
