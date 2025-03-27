@@ -35,9 +35,10 @@ namespace MyOwnCourseApp.ViewModels
                 LogInMethod(Login, Password);
             }, () => Login != null & Login != "" & Password != "" & Password != null);*/
             //LogInCommand = new AsyncRelayCommand(LogInMethod(Login, Password));
-            SignUpCommand = new Command(() =>
+            SignUpCommand = new Command(async () =>
             {
-                SignUpTask(Login, Password, Name, Surname);
+                User newUser = new User() { Name = Name, Surname = Surname, Login = Login, Password = Password, Role = 1 };
+                await _apiClient.PostUser(newUser);
             }, ()=> Login != null & Login != "" & Password != "" & Password != null & Name != null & Name != "" & Surname != "" & Surname != null);
         }
         /*public async Task LogInMethod(string login, string password)
@@ -62,13 +63,7 @@ namespace MyOwnCourseApp.ViewModels
             
                 
         }*/
-        public async Task SignUpTask(string login, string password, string name, string surname)
-        {
-            User newUser = new User() {Name = name, Surname = surname , Login = login, Password = password, Role = 1 };
-            await _apiClient.PostUser(newUser);
-            //await _database.InsertAsync(newUser);
-        }
-
+       
         public string Login
         {
             get => login;

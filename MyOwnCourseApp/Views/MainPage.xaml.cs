@@ -32,8 +32,8 @@ namespace MyOwnCourseApp
                      Users.Add(user);
                  }
              }*/
-            User testlocaluser = new User() { Id = 2, Login = "ivan0712", Password = "111", Name = "Ivan", Surname = "Vassilyev", Role = 0 };
-            await _database.InsertAsync(testlocaluser);
+            //User testlocaluser = new User() { Id = 2, Login = "ivan0712", Password = "111", Name = "Ivan", Surname = "Vassilyev", Role = 0 };
+            //await _database.InsertAsync(testlocaluser);
 
             UsersCollection.ItemsSource = await _database.Table<User>().ToListAsync();
         }

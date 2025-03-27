@@ -22,7 +22,6 @@ public partial class SignUpPage : ContentPage
 	{
 		//Shell.Current.Navigation.InsertPageBefore(new MainPage(_apiClient), Shell.Current.Navigation.NavigationStack[0]);
 		//await Shell.Current.Navigation.PopToRootAsync(false);
-		await Navigation.PopModalAsync(false);
         await Navigation.PopModalAsync(false);
     }
 	public void CheckIfSame(object sender, TextChangedEventArgs e)
