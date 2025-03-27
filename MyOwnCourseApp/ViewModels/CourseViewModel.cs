@@ -47,7 +47,7 @@ namespace MyOwnCourseApp.ViewModels
                         break;
 
                 }
-                var localUser = await _database.Table<User>().FirstOrDefaultAsync();
+                var localUser = await _database.Table<LocalUserDto>().FirstOrDefaultAsync();
                 if (localUser != null)
                 {
                     Course newCourse = new Course() { Name = Name, Category = Category, Creator = localUser.Id, Status = Status };

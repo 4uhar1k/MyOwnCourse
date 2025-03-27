@@ -32,6 +32,7 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+            <Label x:Name="localuserlabel"/>
             <Button
         x:Name="CounterBtn"
         Text="Test database" 

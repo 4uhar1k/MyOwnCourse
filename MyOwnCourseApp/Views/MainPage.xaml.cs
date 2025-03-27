@@ -41,7 +41,9 @@ namespace MyOwnCourseApp
             //User testlocaluser = new User() { Id = 2, Login = "ivan0712", Password = "111", Name = "Ivan", Surname = "Vassilyev", Role = 0 };
             //await _database.InsertAsync(testlocaluser);
 
-            UsersCollection.ItemsSource = await _database.Table<User>().ToListAsync();
+            //UsersCollection.ItemsSource = await _database.Table<User>().ToListAsync();
+            LocalUserDto localuser = await _database.Table<LocalUserDto>().FirstOrDefaultAsync();
+            localuserlabel.Text = $"{localuser.Name} {localuser.Surname}";
         }
 
         public async void CheckIfLoggedIn()
@@ -52,7 +54,7 @@ namespace MyOwnCourseApp
         }
         public async void LogOut(object sender, EventArgs e)
         {
-            await _database.DeleteAllAsync<User>();
+            await _database.DeleteAllAsync<LocalUserDto>();
             await Navigation.PushModalAsync(new LoginPage(_apiClient), false);
             //await _database.DropTableAsync<User>();
             //await _database.CreateTableAsync<User>();
