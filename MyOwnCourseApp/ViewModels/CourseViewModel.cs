@@ -21,7 +21,7 @@ namespace MyOwnCourseApp.ViewModels
         private readonly SqlConnectionBase _connection;
         private readonly ISQLiteAsyncConnection _database;
         public int id, creator, status;
-        public string name, category, statusstring, creatorname;
+        public string name, category, statusstring;//,creatorname;
         public ObservableCollection<Course> AllCourses { get; set; }
         public ObservableCollection<User> Users { get; set; }
         public ICommand AddCourseCommand { get; set; }
@@ -64,11 +64,11 @@ namespace MyOwnCourseApp.ViewModels
                 foreach (var course in allcourses)
                 {
                     AllCourses.Add(course);                    
-                    User? creator = await _apiClient.GetUserById(course.Creator);
-                    if (creator != null)
-                    {
-                        CreatorName = $"{creator.Name} {creator.Surname}";
-                    }
+                    //User? creator = await _apiClient.GetUserById(course.Creator);
+                    //if (creator != null)
+                    //{
+                    //    CreatorName = $"{creator.Name} {creator.Surname}";
+                    //}
                 }
             }
             var allusers = await _apiClient.GetUsers();
@@ -117,15 +117,15 @@ namespace MyOwnCourseApp.ViewModels
                 OnPropertyChanged(nameof(Name));
             }
         }
-        public string CreatorName
-        {
-            get => creatorname;
-            set
-            {
-                creatorname = value;
-                OnPropertyChanged(nameof(CreatorName));
-            }
-        }
+        //public string CreatorName
+        //{
+        //    get => creatorname;
+        //    set
+        //    {
+        //        creatorname = value;
+        //        OnPropertyChanged(nameof(CreatorName));
+        //    }
+        //}
         public string Category
         {
             get => category;

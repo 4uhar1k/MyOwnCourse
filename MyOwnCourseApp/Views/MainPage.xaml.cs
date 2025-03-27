@@ -23,25 +23,11 @@ namespace MyOwnCourseApp
             _apiClient = apiClient;
             thisContext = new CourseViewModel(_apiClient);
             BindingContext = thisContext;
-            Users = new List<User>();
-            
-
+            Users = new List<User>();         
         }
 
         private async void OnCounterClicked(object sender, EventArgs e)
-        {
-            /* var allusers = await _apiClient.GetUsers();
-             if (allusers !=null)
-             {
-                 foreach (var user in allusers)
-                 {
-                     Users.Add(user);
-                 }
-             }*/
-            //User testlocaluser = new User() { Id = 2, Login = "ivan0712", Password = "111", Name = "Ivan", Surname = "Vassilyev", Role = 0 };
-            //await _database.InsertAsync(testlocaluser);
-
-            //UsersCollection.ItemsSource = await _database.Table<User>().ToListAsync();
+        {            
             LocalUserDto localuser = await _database.Table<LocalUserDto>().FirstOrDefaultAsync();
             localuserlabel.Text = $"{localuser.Name} {localuser.Surname}";
         }
@@ -55,9 +41,7 @@ namespace MyOwnCourseApp
         public async void LogOut(object sender, EventArgs e)
         {
             await _database.DeleteAllAsync<LocalUserDto>();
-            await Navigation.PushModalAsync(new LoginPage(_apiClient), false);
-            //await _database.DropTableAsync<User>();
-            //await _database.CreateTableAsync<User>();
+            await Navigation.PushModalAsync(new LoginPage(_apiClient), false);            
         }
     }
 

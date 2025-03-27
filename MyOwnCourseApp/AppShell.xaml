@@ -8,15 +8,15 @@
     Title="MyOwnCourseApp">
 
     <TabBar>
-        <ShellContent 
+        <ShellContent Title="All courses"
             ContentTemplate="{DataTemplate local:MainPage}"
             Route="MainPage"
             />
-        <ShellContent 
+        <ShellContent Title="My courses"
     ContentTemplate="{DataTemplate local:Views.MyCoursesPage}"
     Route="MyCoursesPage"
     />
-        <ShellContent 
+        <ShellContent Title="My profile"
     ContentTemplate="{DataTemplate local:Views.MyProfilePage}"
     Route="MyProfilePage"
     />
