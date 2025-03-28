@@ -17,7 +17,7 @@ namespace MyOwnCourseApp
         protected override async void OnStart()
         {
             ISQLiteAsyncConnection database = _connection.CreateConnection();
-            await database.CreateTablesAsync<User, LocalUserDto>();
+            await database.CreateTablesAsync<User, LocalUserDto, Role>();
             //await database.CreateTableAsync<LocalUserDto>();
             base.OnStart();
         }

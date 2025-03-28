@@ -1,7 +1,4 @@
-﻿using CommonServiceLocator;
-using MyOwnCourseApiClient;
-using MyOwnCourseApiClient.Models;
-using MyOwnCourseApiClient.Models.ApiModels;
+﻿using MyOwnCourseApiClient.Models.ApiModels;
 using MyOwnCourseApp.LocalDatabase;
 using SQLite;
 using System;
@@ -11,30 +8,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyOwnCourseApp
+namespace MyOwnCourseApp.Converters
 {
-    public class IdToNameConverter : IValueConverter
+    public class CategoryIdToNameConverter : IValueConverter
     {
         private readonly SqlConnectionBase _connection;
         private readonly ISQLiteAsyncConnection _database;
-        public IdToNameConverter()
+        public CategoryIdToNameConverter()
         {
             _connection = new SqlConnectionBase();
             _database = _connection.CreateConnection();
         }
-        //public IdToNameConverter(MOCApiClientService apiClient)
-        //{
-        //    _apiClient = apiClient;
-        //}
         public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
-            if (value is int Id)
+            if (value is int CategoryId)
             {
-                var SearchedUser = _database.Table<User>().Where(x => x.Id == Id).FirstOrDefaultAsync();
-                if (SearchedUser.Result != null)
+                var SearchedCategory = _database.Table<Role>().Where(x => x.Id == CategoryId).FirstOrDefaultAsync();
+                if (SearchedCategory != null)
                 {
-                    User FoundUser = (User)SearchedUser.Result;
-                    return $"{FoundUser.Name} {FoundUser.Surname}";
+                    Role FoundCategory = (Role)SearchedCategory.Result;
+                    return FoundCategory.Name;
                 }
                 return null;
             }

@@ -23,6 +23,8 @@ namespace MyOwnCourseApp.ViewModels
         public int id, creator, status;
         public string name, category, statusstring;//,creatorname;
         public ObservableCollection<Course> AllCourses { get; set; }
+        public ObservableCollection<Course> MyCourses { get; set; }
+
         public ObservableCollection<User> Users { get; set; }
         public ICommand AddCourseCommand { get; set; }
         public CourseViewModel(MOCApiClientService apiClient)
@@ -31,6 +33,7 @@ namespace MyOwnCourseApp.ViewModels
             _connection = new SqlConnectionBase();
             _database = _connection.CreateConnection();
             AllCourses = new ObservableCollection<Course>();
+            MyCourses = new ObservableCollection<Course>();
             LoadAllCourses();
             AddCourseCommand = new Command(async () =>
             {
@@ -60,10 +63,15 @@ namespace MyOwnCourseApp.ViewModels
             var allcourses = await _apiClient.GetCourses();
             if (allcourses != null)
             {
-                
+                var localUser = await _database.Table<LocalUserDto>().FirstOrDefaultAsync();
                 foreach (var course in allcourses)
                 {
-                    AllCourses.Add(course);                    
+                    AllCourses.Add(course);
+                    if (localUser != null)
+                    {
+                        if (course.Creator == localUser.Id) 
+                            MyCourses.Add(course);
+                    }
                     //User? creator = await _apiClient.GetUserById(course.Creator);
                     //if (creator != null)
                     //{
@@ -77,6 +85,13 @@ namespace MyOwnCourseApp.ViewModels
                 await _database.CreateTableAsync<User>();
                 await _database.InsertAllAsync(allusers);
             }
+            var allroles = await _apiClient.GetRoles();
+            if (allroles != null)
+            {
+                await _database.CreateTableAsync<Role>();
+                await _database.InsertAllAsync(allroles);
+            }
+
         }
         public int Id
         {

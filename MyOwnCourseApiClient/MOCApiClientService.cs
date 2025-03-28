@@ -102,6 +102,9 @@ namespace MyOwnCourseApiClient
             await _httpClient.DeleteAsync($"/api/Course/{id}");
         }
 
-
+        public async Task<List<Role>?> GetRoles()
+        {
+            return await _httpClient.GetFromJsonAsync<List<Role>?>("/api/Role");
+        }
     }
 }

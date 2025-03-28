@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using MyOwnCourseApiClient.IoC;
+using MyOwnCourseApp.Converters;
 using MyOwnCourseApp.LocalDatabase;
 using MyOwnCourseApp.ViewModels;
 using MyOwnCourseApp.Views;
