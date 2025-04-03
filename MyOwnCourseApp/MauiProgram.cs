@@ -22,11 +22,10 @@ namespace MyOwnCourseApp
             builder.Services.AddMOCApiClientService(x => x.ApiBaseAdress = "http://10.0.2.2:5000");
             builder.Services.AddTransient<IdToNameConverter>();
             builder.Services.AddTransient<MainPage>();
-
             builder.Services.AddTransient<SignUpNInViewModel>();
             builder.Services.AddTransient<CourseViewModel>();
             builder.Services.AddTransient<MyCoursesPage>();
-
+            builder.Services.AddTransient<FollowedCoursesPage>();
             builder.Services.AddSingleton<SqlConnectionBase>();
 
 #if DEBUG
