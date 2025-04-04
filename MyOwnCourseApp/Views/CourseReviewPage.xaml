@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyOwnCourseApp.CourseReviewPage"
+             Title="CourseReviewPage">
+    <VerticalStackLayout>
+        <Label Text="{Binding Name}" FontSize="40" Margin="25,0,0,0"  />
+        <Label Text="{Binding Category}" FontSize="20" Margin="25,0,0,0"  />
+        <Label Text="Followers: 20" FontSize="20" Margin="25,0,0,0"  />
+        <Button Text="Follow" WidthRequest="300" HeightRequest="60" BackgroundColor="Blue" FontSize="30"/>
+        <Button WidthRequest="100" HeightRequest="125" HorizontalOptions="Center" BackgroundColor="Green" Text="+" FontSize="80" />
+    </VerticalStackLayout>
+</ContentPage>
