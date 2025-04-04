@@ -1,4 +1,5 @@
 using MyOwnCourseApiClient;
+using MyOwnCourseApiClient.Models.ApiModels;
 using MyOwnCourseApp.ViewModels;
 
 namespace MyOwnCourseApp.Views;
@@ -19,4 +20,12 @@ public partial class MyCoursesPage : ContentPage
 	{
 		await Navigation.PushAsync(new AddCoursePage(_apiClient));
 	}
+    public async void CourseClicked(object sender, SelectionChangedEventArgs e)
+    {
+        if (e.CurrentSelection != null)
+        {
+            Course selectedCourse = (Course)e.CurrentSelection[0];
+            await Navigation.PushAsync(new CourseReviewPage(_apiClient, selectedCourse), false);
+        }
+    }
 }
