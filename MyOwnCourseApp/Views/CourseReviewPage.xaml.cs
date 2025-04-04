@@ -27,6 +27,7 @@ public partial class CourseReviewPage : ContentPage
         thisContext.Category = curCourse.Category;
         thisContext.Creator = curCourse.Creator;
         thisContext.Status = thisContext.Status;
+        thisContext.GetCurCourseInfo();
         BindingContext = thisContext;
     }
 }

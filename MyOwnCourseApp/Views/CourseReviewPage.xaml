@@ -29,7 +29,8 @@
                 </Label.Text>
             </Label>-->
         </Grid>
-        <Button Text="Follow" WidthRequest="300" HeightRequest="60" BackgroundColor="Blue" FontSize="30"/>
-        <Button WidthRequest="100" HeightRequest="125" HorizontalOptions="Center" BackgroundColor="Green" Text="+" FontSize="80" />
+        <Label Text="No exercises yet" HorizontalTextAlignment="Center"/>
+        <Button Text="Follow" IsVisible="{Binding IsNotCreator}" WidthRequest="300" HeightRequest="60" BackgroundColor="Blue" FontSize="30"/>
+        <Button WidthRequest="100" IsVisible="{Binding IsCreator}" HeightRequest="125" HorizontalOptions="Center" BackgroundColor="Green" Text="+" FontSize="80" />
     </VerticalStackLayout>
 </ContentPage>
