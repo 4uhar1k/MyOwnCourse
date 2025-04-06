@@ -10,7 +10,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <VerticalStackLayout>
-        <CollectionView x:Name="UsersCollection" ItemsSource="{Binding MyCourses}">
+        <CollectionView x:Name="UsersCollection" ItemsSource="{Binding MyCourses}" SelectionChanged="CourseClicked" SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Border>

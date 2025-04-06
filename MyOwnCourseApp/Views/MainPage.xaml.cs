@@ -38,6 +38,15 @@ namespace MyOwnCourseApp
             if (loggeduser.Count == 0)
                 await Navigation.PushModalAsync(new LoginPage(_apiClient));
         }
+
+        public async void CourseClicked(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.CurrentSelection != null)
+            {
+                Course selectedCourse = (Course)e.CurrentSelection[0];
+                await Navigation.PushAsync(new CourseReviewPage(_apiClient, selectedCourse), false);
+            }
+        }
         public async void LogOut(object sender, EventArgs e)
         {
             await _database.DeleteAllAsync<LocalUserDto>();

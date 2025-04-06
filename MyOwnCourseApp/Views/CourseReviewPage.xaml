@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local_converters="clr-namespace:MyOwnCourseApp.Converters"
+             x:Class="MyOwnCourseApp.CourseReviewPage"
+             Title="CourseReviewPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local_converters:IdToNameConverter x:Key="IdToName"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <VerticalStackLayout>
+        <Label Text="{Binding Name}" FontSize="40" Margin="25,0,0,0"  />
+        <Label Text="{Binding Category}" FontSize="20" Margin="25,0,0,0"  />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Text="Followers: 20" FontSize="20" Margin="25,0,0,0"  />
+            <Label Grid.Column="1" Text="Author: " FontSize="20"/>
+            
+            <Label Grid.Column="1" Text="{Binding Creator, Converter={StaticResource IdToName}}" FontSize="20" Margin="80,0,0,0" />
+            <!--<Label Grid.Column="1" FontSize="20" >
+                <Label.Text>
+                    <MultiBinding Converter="{StaticResource IdToName}" StringFormat="{}Author: {0}">
+                        <Binding Path="Creator"/>                        
+                    </MultiBinding> 
+                </Label.Text>
+            </Label>-->
+        </Grid>
+        <Label Text="No exercises yet" HorizontalTextAlignment="Center"/>
+        <Button Text="Follow" IsVisible="{Binding IsNotCreator}" WidthRequest="300" HeightRequest="60" BackgroundColor="Blue" FontSize="30"/>
+        <Button WidthRequest="100" IsVisible="{Binding IsCreator}" HeightRequest="125" HorizontalOptions="Center" BackgroundColor="Green" Text="+" FontSize="80" />
+    </VerticalStackLayout>
+</ContentPage>
