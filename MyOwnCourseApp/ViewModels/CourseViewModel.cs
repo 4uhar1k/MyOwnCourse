@@ -22,6 +22,7 @@ namespace MyOwnCourseApp.ViewModels
         private readonly ISQLiteAsyncConnection _database;
         public int id, creator, status;
         public string name, category, statusstring;//,creatorname;
+        public bool iscreator, isnotcreator;
         public ObservableCollection<Course> AllCourses { get; set; }
         public ObservableCollection<Course> MyCourses { get; set; }
 
@@ -93,6 +94,16 @@ namespace MyOwnCourseApp.ViewModels
             }
 
         }
+
+        public async void GetCurCourseInfo()
+        {
+            LocalUserDto curUser = await _database.Table<LocalUserDto>().FirstOrDefaultAsync();
+            if (curUser != null)
+            {
+                IsCreator = (curUser.Id == Creator);
+                IsNotCreator = !IsCreator;
+            }
+        }
         public int Id
         {
             get => id;
@@ -157,6 +168,30 @@ namespace MyOwnCourseApp.ViewModels
             {
                 statusstring = value;
                 OnPropertyChanged(nameof(Statusstring));
+            }
+        }
+        public bool IsCreator
+        {
+            get => iscreator;
+            set
+            {
+                if (iscreator != value)
+                {
+                    iscreator = value;
+                    OnPropertyChanged(nameof(IsCreator));
+                }
+            }
+        }
+        public bool IsNotCreator
+        {
+            get => isnotcreator;
+            set
+            {
+                if (isnotcreator != value)
+                {
+                    isnotcreator = value;
+                    OnPropertyChanged(nameof(IsNotCreator));
+                }
             }
         }
         public void OnPropertyChanged(string propertyName)

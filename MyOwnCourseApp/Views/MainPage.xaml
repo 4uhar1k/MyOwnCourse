@@ -10,7 +10,7 @@
     </ContentPage.Resources>
     <ScrollView>
         <StackLayout>
-            <CollectionView x:Name="UsersCollection" ItemsSource="{Binding AllCourses}">
+            <CollectionView x:Name="UsersCollection" ItemsSource="{Binding AllCourses}" SelectionChanged="CourseClicked" SelectionMode="Single">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Border>
