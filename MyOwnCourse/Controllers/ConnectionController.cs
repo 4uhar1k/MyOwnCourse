@@ -28,6 +28,14 @@ namespace MyOwnCourseAPI.Controllers
             }
             return null;
         }
+
+        [HttpPost]
+        public async Task<ActionResult> CreateConnection (Connection connection)
+        {
+            await _dbContext.Connections.AddAsync(connection);
+            await _dbContext.SaveChangesAsync();
+            return CreatedAtAction(nameof(GetConnectionsByCourseId), new { id = connection.CourseId }, connection);
+        }
     }
     
 }
