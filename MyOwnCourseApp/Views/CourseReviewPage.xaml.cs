@@ -23,6 +23,7 @@ public partial class CourseReviewPage : ContentPage
         _apiClient = apiClient;
         curCourse = selectedCourse;
         thisContext = new CourseViewModel(_apiClient);
+        thisContext.Id = curCourse.Id;
         thisContext.Name = curCourse.Name;
         thisContext.Category = curCourse.Category;
         thisContext.Creator = curCourse.Creator;

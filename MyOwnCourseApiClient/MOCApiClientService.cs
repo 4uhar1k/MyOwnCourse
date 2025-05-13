@@ -64,7 +64,10 @@ namespace MyOwnCourseApiClient
         {
             return await _httpClient.GetFromJsonAsync<List<Course>?>("/api/Course");
         }
-
+        public async Task<int> GetLastId()
+        {
+            return await _httpClient.GetFromJsonAsync<int>("/api/Course/getlastid");
+        }
         public async Task<Course?> GetCourseById(int id)
         {
             try
@@ -115,8 +118,8 @@ namespace MyOwnCourseApiClient
         {
             return await _httpClient.GetFromJsonAsync<List<Connection>?>($"/api/Connection/courseid/{CourseId}");
         }
-
-        public async Task CreateConnection(Connection connection)
+        
+        public async Task PostConnection(Connection connection)
         {
             await _httpClient.PostAsJsonAsync("/api/Connection", connection);
         }

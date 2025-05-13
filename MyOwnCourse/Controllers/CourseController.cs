@@ -1,5 +1,6 @@
 ﻿//using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MyOwnCourseAPI.Data;
 using MyOwnCourseAPI.Domains.Enitites;
 
@@ -38,6 +39,16 @@ namespace MyOwnCourseAPI.Controllers
             if (listofcourses!=null)
                 return listofcourses;
             return null;
+        }
+        [HttpGet("getlastid")]
+        public int GetLastId()
+        {
+            var lastId = _courseDBContext.Courses.OrderByDescending(c => c.Id).FirstOrDefault();
+            if (lastId != null)
+            {
+                return lastId.Id;
+            }
+            return 0;
         }
         [HttpPost]
         public async Task<ActionResult> CreateCourse(Course course)

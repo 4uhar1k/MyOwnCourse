@@ -4,6 +4,8 @@ using MyOwnCourseAPI.Domains.Enitites;
 
 namespace MyOwnCourseAPI.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class ConnectionController: ControllerBase
     {
         private readonly CourseDBContext _dbContext;
@@ -28,6 +30,7 @@ namespace MyOwnCourseAPI.Controllers
             }
             return null;
         }
+        
 
         [HttpPost]
         public async Task<ActionResult> CreateConnection (Connection connection)

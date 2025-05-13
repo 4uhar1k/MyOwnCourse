@@ -28,6 +28,7 @@ namespace MyOwnCourseApp.ViewModels
 
         public ObservableCollection<User> Users { get; set; }
         public ICommand AddCourseCommand { get; set; }
+        public ICommand AddConnectionCommand { get; set; }
         public CourseViewModel(MOCApiClientService apiClient)
         {
             _apiClient = apiClient;
@@ -56,6 +57,22 @@ namespace MyOwnCourseApp.ViewModels
                 {
                     Course newCourse = new Course() { Name = Name, Category = Category, Creator = localUser.Id, Status = Status };
                     await _apiClient.PostCourse(newCourse);
+
+                    int lastId = await _apiClient.GetLastId();
+                    Connection newCreator = new Connection() { UserId = localUser.Id, CourseId = lastId, Type = 6 };
+                    await _apiClient.PostConnection(newCreator);
+                }
+                
+                
+            });
+
+            AddConnectionCommand = new Command(async () =>
+            {
+                var localUser = await _database.Table<LocalUserDto>().FirstOrDefaultAsync();
+                if (localUser != null)
+                {
+                    Connection newFollower = new Connection() { UserId = localUser.Id, CourseId = Id, Type = 7 };
+                    await _apiClient.PostConnection(newFollower);
                 }
             });
         }
