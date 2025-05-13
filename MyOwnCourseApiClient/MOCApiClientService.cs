@@ -118,7 +118,11 @@ namespace MyOwnCourseApiClient
         {
             return await _httpClient.GetFromJsonAsync<List<Connection>?>($"/api/Connection/courseid/{CourseId}");
         }
-        
+        public async Task<List<Connection>?> GetConnectionsByUserId(int UserId)
+        {
+            return await _httpClient.GetFromJsonAsync<List<Connection>?>($"/api/Connection/userid/{UserId}");
+        }
+
         public async Task PostConnection(Connection connection)
         {
             await _httpClient.PostAsJsonAsync("/api/Connection", connection);

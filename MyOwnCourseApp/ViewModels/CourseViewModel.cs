@@ -25,6 +25,7 @@ namespace MyOwnCourseApp.ViewModels
         public bool iscreator, isnotcreator;
         public ObservableCollection<Course> AllCourses { get; set; }
         public ObservableCollection<Course> MyCourses { get; set; }
+        public ObservableCollection<Course> FollowedCourses { get; set; }
 
         public ObservableCollection<User> Users { get; set; }
         public ICommand AddCourseCommand { get; set; }
@@ -36,6 +37,7 @@ namespace MyOwnCourseApp.ViewModels
             _database = _connection.CreateConnection();
             AllCourses = new ObservableCollection<Course>();
             MyCourses = new ObservableCollection<Course>();
+            FollowedCourses = new ObservableCollection<Course>();
             LoadAllCourses();
             AddCourseCommand = new Command(async () =>
             {
@@ -81,20 +83,44 @@ namespace MyOwnCourseApp.ViewModels
             var allcourses = await _apiClient.GetCourses();
             if (allcourses != null)
             {
-                var localUser = await _database.Table<LocalUserDto>().FirstOrDefaultAsync();
+                //var localUser = await _database.Table<LocalUserDto>().FirstOrDefaultAsync();
                 foreach (var course in allcourses)
                 {
                     AllCourses.Add(course);
-                    if (localUser != null)
+                    /*if (localUser != null)
                     {
                         if (course.Creator == localUser.Id) 
                             MyCourses.Add(course);
-                    }
+                        var connections = await _apiClient.GetConnectionsByCourseId(course.Id);
+                        List<Connection> connectionsList = connections.ToList().Where(x => x.UserId == localUser.Id).FirstOrDefault();
+
+                    }*/
                     //User? creator = await _apiClient.GetUserById(course.Creator);
                     //if (creator != null)
                     //{
                     //    CreatorName = $"{creator.Name} {creator.Surname}";
                     //}
+                }
+            }
+            var localUser = await _database.Table<LocalUserDto>().FirstOrDefaultAsync();
+            var coursesofcuruser = await _apiClient.GetConnectionsByUserId(localUser.Id);
+            if (coursesofcuruser != null)
+            {
+                foreach (Connection connection in coursesofcuruser)
+                {
+                    var coursebyid = await _apiClient.GetCourseById(connection.CourseId);
+                    if (coursebyid != null)
+                    {
+                        if (connection.Type == 6) // if current user is a creator of course
+                        {
+                            MyCourses.Add(coursebyid);
+                        }
+
+                        else if (connection.Type == 7)
+                        {
+                            FollowedCourses.Add(coursebyid);
+                        }
+                    }
                 }
             }
             var allusers = await _apiClient.GetUsers();

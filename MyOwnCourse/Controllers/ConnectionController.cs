@@ -30,7 +30,16 @@ namespace MyOwnCourseAPI.Controllers
             }
             return null;
         }
-        
+        [HttpGet("userid/{UserId}")]
+        public IEnumerable<Connection> GetConnectionsByUserId(int UserId)
+        {
+            var listofconnections = _dbContext.Connections.Where(n => n.UserId == UserId);
+            if (listofconnections != null)
+            {
+                return listofconnections;
+            }
+            return null;
+        }
 
         [HttpPost]
         public async Task<ActionResult> CreateConnection (Connection connection)
